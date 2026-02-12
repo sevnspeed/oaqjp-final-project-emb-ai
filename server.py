@@ -21,9 +21,13 @@ def report_emotion():
 
     return "For the given statement, the system response is 'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {}, and 'sadness': {}. The dominant emotion is <b>{}</b>".format(angerval, disgustval, fearval, joyval, sadval, domemot)
     '''    
-    #return by key value with .format    
-    return "For the given statement, the system response is 'anger': {},  disgust': {}, 'fear': {}, 'joy': {}, and 'sadness': {}. The dominant emotion is <b>{}</b>".format(response['anger'], response['disgust'], response['fear'], response['joy'], response['sadness'], response['dominant_emotion'])
-
+    if response['dominant_emotion'] == 'None': #if dominant emotion None (no input), error
+        return 'Invalid text! Please try again'
+    
+    else: #(valid input)
+        #return by key value with .format
+        return "For the given statement, the system response is 'anger': {},  disgust': {}, 'fear': {}, 'joy': {}, and 'sadness': {}. The dominant emotion is <b>{}</b>".format(response['anger'], response['disgust'], response['fear'], response['joy'], response['sadness'], response['dominant_emotion'])
+ 
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
