@@ -8,9 +8,7 @@ def emotion_detector(text_to_analyse):
     myjson = { "raw_document": { "text": text_to_analyse } }
     response = requests.post(url, json = myjson, headers = header)
     formatted_response = json.loads(response.text)
-    #typetest = type(formatted_response)
     emotionpredict = formatted_response['emotionPredictions'][0]
-    #print(emotion)
     emotion = emotionpredict['emotion']
     '''
     anger_score = float(emotion['anger'])
@@ -19,14 +17,8 @@ def emotion_detector(text_to_analyse):
     joy_scorescore = float(emotion['joy'])
     sadness_score = float(emotion['sadness'])
     '''
-
-    fear_score=emotion['fear']
-    print(fear_score)
-    find max value
-    #anger = {'anger': float(emotion['anger'])}
-    #anger_score = float(emotion['anger'])
-
-    emotion['dominant_emotion']=maxvar
+    domkey = max(emotion, key=emotion.get)
+    emotion['dominant_emotion']=domkey
     print(emotion)
 '''
 print(formatted_response)
